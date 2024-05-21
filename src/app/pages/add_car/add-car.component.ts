@@ -28,6 +28,7 @@ export class AddCarComponent implements OnInit {
     fuel_effieciency: number,
     color: string,
   ): void {
+    console.log(brand, model, year, mileage, price, condition, transmission, fuel_type, engine_size, fuel_effieciency, color)
     this.service
       .addCar(
         brand,
@@ -42,9 +43,9 @@ export class AddCarComponent implements OnInit {
         fuel_effieciency,
         color,
       )
-      .subscribe(() => {
-        this.router.navigate(['showCars']).then((_) => { })
-      })
+
+    this.router.navigate(['showCars']).then((_) => { })
+
   }
 
   onCancel(): void {

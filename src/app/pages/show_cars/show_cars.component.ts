@@ -25,7 +25,8 @@ export class ShowCarsComponent implements OnInit {
   }
 
   refresh(brand: string): void {
-    const data: Observable<Car[]> = this.service.fetchCars()
+    const data: Observable<Car[]> = this.service.fetchCars(brand)
+    this.cars = []
     data.subscribe((cars: any[]) => {
       cars.forEach((car) => {
         this.cars.push(car)

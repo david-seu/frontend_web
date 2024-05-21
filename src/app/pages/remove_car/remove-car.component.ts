@@ -17,7 +17,6 @@ export class DeleteCarComponent implements OnInit {
   ngOnInit(): void { }
 
   onYes(): void {
-    console.log(this.route.snapshot.queryParams['id'])
     this.service.deleteCar(this.route.snapshot.queryParams['id'])
     this.router.navigate(['showCars']).then((_) => { })
   }

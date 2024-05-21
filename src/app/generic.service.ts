@@ -19,15 +19,17 @@ export class GenericService {
     constructor(private http: HttpClient) {
     }
 
-    fetchCars(): Observable<Car[]> {
+    fetchCars(brand: string): Observable<Car[]> {
         /* body of the method */
-        return this.http.get<Car[]>(this.backendUrl + `showCars.php`)
+        return this.http.get<Car[]>(this.backendUrl + `showCars.php?brand=${brand}`)
             .pipe(catchError(this.handleError<Car[]>('fetchStudents', []))
             );
     }
 
     deleteCar(carId: number): Observable<any> {
-        return this.http.post(this.backendUrl + `removeCar.php`, { id: carId });
+        const result = this.http.post(this.backendUrl + `removeCar.php`, { id: carId });
+        result.subscribe();
+        return result;
     }
 
     getCarById(carId: number): Observable<Car> {
@@ -62,7 +64,13 @@ export class GenericService {
         formData.append('fuel_effieciency', fuel_effieciencyOf.toString());
         formData.append('color', colorOf);
 
-        return this.http.post(this.backendUrl + `addCar.php`, formData);
+        formData.forEach((value, key) => {
+            console.log(key + ' ' + value);
+        });
+
+        const result = this.http.post(this.backendUrl + `addCar.php`, formData);
+        result.subscribe();
+        return result;
     }
 
     updateCar(
@@ -79,8 +87,7 @@ export class GenericService {
         fuel_effieciencyOf: number,
         colorOf: string
     ): Observable<any> {
-        console.log(idOf, brandOf, modelOf, yearOf, mileageOf, priceOf, conditionOf, transmissionOf, fuel_typeOf, engine_sizeOf, fuel_effieciencyOf, colorOf)
-        return this.http.post(this.backendUrl + `updateCar.php`, {
+        const result = this.http.post(this.backendUrl + `updateCar.php`, {
             id: idOf,
             brand: brandOf,
             model: modelOf,
@@ -94,6 +101,8 @@ export class GenericService {
             fuel_effieciency: fuel_effieciencyOf,
             color: colorOf
         });
+        result.subscribe();
+        return result;
     }
 
     private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
