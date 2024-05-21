@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Create Car</h1>
+  <p><b>Please fill this form and submit to add the car to the database.</b></p>
+
+  <div class="formWrapper">
+    <input type="text" name="brand" placeholder="Brand:" #brand> <br>
+        <input type="text" name="model" placeholder="Model:" #model> <br>
+        <input type="number" name="year" placeholder="Fabrication Year:" #year> <br>
+        <input type="number" name="mileage" placeholder="Mileage:" #mileage> <br>
+        <input type="number" name="price" placeholder="Price:" #price> <br>
+        <input type="text" name="condition" placeholder="Condition:" #condition> <br>
+        <input type="text" name="transmission" placeholder="Transmission:" #transmission> <br>
+        <input type="text" name="fuel_type" placeholder="Fuel Type:" #fuel_type> <br>
+        <input type="number" name="engine_size" placeholder="Engine Size (L):" #engine_size> <br>
+        <input type="number" name="fuel_efficiency" placeholder="Fule Efficiency (L/100KM):" #fuel_efficiency> <br>
+        <input type="text" name="color" placeholder="Color:" #color> <br>
+    <div class="button_container">
+      <button
+        (click)="addCar(brand.value, model.value, +year.value, +mileage.value, +price.value, condition.value, transmission.value, fuel_type.value, +engine_size.value, +fuel_efficiency.value, color.value)">
+        Add Car
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

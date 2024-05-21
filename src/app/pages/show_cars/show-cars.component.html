@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="details">
+    <h1>Cars</h1>
+
+
+    <input type="text" placeholder="brand:" #brand (input)="refresh(brand.value)"/>
+
+    <button class="add" (click)="navigateToAdd()">
+      Add new car
+    </button>
+    <!-- <p id="info">The query has been done with the brand "{{brand.value}}"</p> -->
+  </div>
+  <table>
+    <tr>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Mileage</th>
+        <th>Price</th>
+        <th>Condition</th>
+        <th>Transmission</th>
+        <th>Fuel Type</th>
+        <th>Engine Size</th>
+        <th>Fuel Efficiency</th>
+        <th>Color</th>
+    </tr>
+    <tr *ngFor="let car of cars">
+        <td>{{car.brand}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.year}}</td>
+        <td>{{car.mileage}}</td>
+        <td>{{car.price}}</td>
+        <td>{{car.condition}}</td>
+        <td>{{car.transmission}}</td>
+        <td>{{car.fuel_type}}</td>
+        <td>{{car.engine_size}}</td>
+        <td>{{car.fuel_efficiency}}</td>
+        <td>{{car.color}}</td>
+      <td>
+        <button id="updateButton" (click)="navigateToUpdate(car.id)">Update</button>
+        <br>
+        <button (click)="navigateToDelete(car.id)" id="deleteButton">Delete</button>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Update Car</h1>
+  <p><b>Please fill this form and submit to update the car from the database.</b></p>
+
+  <div class="formWrapper">
+        <input type="text" name="brand" placeholder="Brand:" [(ngModel)]="car.brand"> <br>
+        <input type="text" name="model" placeholder="Model:" [(ngModel)]="car.model"> <br>
+        <input type="number" name="year" placeholder="Fabrication Year:" [(ngModel)]="car.year"> <br>
+        <input type="number" name="mileage" placeholder="Mileage:" [(ngModel)]="car.mileage"> <br>
+        <input type="number" name="price" placeholder="Price:" [(ngModel)]="car.price"> <br>
+        <input type="text" name="condition" placeholder="Condition:" [(ngModel)]="car.condition"> <br>
+        <input type="text" name="transmission" placeholder="Transmission:" [(ngModel)]="car.transmission"> <br>
+        <input type="text" name="fuel_type" placeholder="Fuel Type:" [(ngModel)]="car.fuel_type"> <br>
+        <input type="number" name="engine_size" placeholder="Engine Size (L):" [(ngModel)]="car.engine_size"> <br>
+        <input type="number" name="fuel_efficiency" placeholder="Fule Efficiency (L/100KM):" [(ngModel)]="car.fuel_efficiency"> <br>
+    <div class="button_container">
+      <button
+        (click)="updateCar()">
+        Update Car
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>
