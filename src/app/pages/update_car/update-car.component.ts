@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { GenericService } from '../../generic.service'
+import { GenericService } from '../../service/generic.service'
 import { Car } from '../../data/car'
 import { FormsModule } from '@angular/forms'
+import { AuthService } from '../../service/auth.service'
 
 @Component({
   selector: 'app-update-car',
@@ -21,9 +22,9 @@ export class UpdateCarComponent implements OnInit {
     price: 0,
     condition: '',
     transmission: '',
-    fuel_type: '',
-    engine_size: 0,
-    fuel_efficiency: 0,
+    fuelType: '',
+    engineSize: 0,
+    fuelEfficiency: 0,
     color: ''
   }
 
@@ -31,9 +32,15 @@ export class UpdateCarComponent implements OnInit {
     private service: GenericService,
     private router: Router,
     private route: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.authService.isLoggedIn.subscribe((value) => {
+      if (!value) {
+        this.router.navigate(['']).then((_) => { })
+      }
+    })
     const id = this.route.snapshot.queryParams['id']
     this.service.getCarById(id).subscribe((car: any) => {
       this.car = car
@@ -53,9 +60,9 @@ export class UpdateCarComponent implements OnInit {
         this.car.price,
         this.car.condition,
         this.car.transmission,
-        this.car.fuel_type,
-        this.car.engine_size,
-        this.car.fuel_efficiency,
+        this.car.fuelType,
+        this.car.engineSize,
+        this.car.fuelEfficiency,
         this.car.color,
       )
     this.router.navigate(['showCars']).then((_) => { })

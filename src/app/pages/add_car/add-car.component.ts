@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { GenericService } from '../../generic.service'
+import { GenericService } from '../../service/generic.service'
+import { AuthService } from '../../service/auth.service'
 
 @Component({
   selector: 'app-add-car',
+  standalone: true,
   templateUrl: './add-car.component.html',
   styleUrls: ['./add-car.component.css'],
 })
@@ -11,9 +13,16 @@ export class AddCarComponent implements OnInit {
   constructor(
     private service: GenericService,
     private router: Router,
+    private authService: AuthService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.authService.isLoggedIn.subscribe((value) => {
+      if (!value) {
+        this.router.navigate(['']).then((_) => { })
+      }
+    })
+  }
 
   addCar(
     brand: string,
@@ -42,9 +51,8 @@ export class AddCarComponent implements OnInit {
         fuel_effieciency,
         color,
       )
-      .subscribe(() => {
-        this.router.navigate(['showCars']).then((_) => { })
-      })
+    this.router.navigate(['showCars'])
+
   }
 
   onCancel(): void {

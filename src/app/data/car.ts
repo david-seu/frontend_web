@@ -7,8 +7,8 @@ export interface Car {
   price: number
   condition: string
   transmission: string
-  fuel_type: string
-  engine_size: number
-  fuel_efficiency: number
+  fuelType: string
+  engineSize: number
+  fuelEfficiency: number
   color: string
 }
